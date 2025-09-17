@@ -26,16 +26,20 @@ def get_day(day_id):
     return jsonify({"day": day[0]})
 
 # Se agrega el nuevo método GET
-@app.route("/name/<int:day_id>", methods=["GET"])
+@app.route("/<int:day_id>", methods=["GET"])
 def get_day_name(day_id):
     day = next((day for day in days if day["id"] == day_id), None)
     if day is None:
         abort(404)
     return jsonify({"name": day["name"]})
 
-
 @app.route("/", methods=["POST"])
 def post_days():
+    return jsonify({"success": True}), 201
+
+# Se agrega el nuevo método POST
+@app.route("/", methods=["POST"])
+def post_name():
     return jsonify({"success": True}), 201
 
 
